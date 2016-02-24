@@ -18,5 +18,15 @@
 (ido-mode t)
 
 ;; Run the compile command  using this keyboard shortcut
-(add-hook 'go-mode-common-hook
+(add-hook 'go-mode-hook
 	  (lambda () (define-key c-mode-base-map (kbd "C-c C-m") 'compile)))
+
+;; Set a bunch of go-mode helpers
+(defun my-go-mode-hook ()
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (local-set-key (kbd "C-c C-m") 'compile)
+  (local-set-key (kbd "M-.") 'godef-jump)
+  (if (not (string-match "go" compile-command))
+      (set (make-local-variable 'compile-command)
+	   "go build -v && go test -v && go vet")))
+(add-hook 'go-mode-hook 'my-go-mode-hook)
