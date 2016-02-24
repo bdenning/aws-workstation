@@ -20,7 +20,7 @@ curl -O https://raw.githubusercontent.com/bdenning/aws-workstation/master/.emacs
 curl -O https://raw.githubusercontent.com/bdenning/aws-workstation/master/.tmux.conf
 
 ## Install go-mode for emacs
-emacs --eval "(package-install 'go-playground)" &
+emacs --eval "(package-install 'go-mode)" &
 
 ## Install and configure docker
 dnf install -y docker
